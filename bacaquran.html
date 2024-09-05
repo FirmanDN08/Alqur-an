@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baca Qur'an</title>
+    <link rel="stylesheet" href="bacaquran.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Align items vertically */
+            margin: 20px 0;
+            position: relative; /* For absolute positioning of the icon */
+        }
+
+        .search-bar input {
+            width: 80%;
+            padding: 10px 40px 10px 20px; /* Add padding to leave space for the icon */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .search-icon {
+            position: absolute; /* Position the icon inside the search bar */
+            right: 10%;
+            font-size: 24px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .back-icon {
+            color: white;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-header">
+        <div class="back-button">
+            <a href="home.html"><i class='bx bx-arrow-back back-icon'></i></a>
+        </div>
+        <div class="app-title">
+            <h1>Al-Qur'an Indonesia</h1>
+        </div>
+        <div class="app-icons">
+            <img src="menu-icon.png" alt="Menu">
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Cari Surah...">
+        <i class='bx bx-search search-icon'></i> <!-- Added search icon -->
+    </div>
+
+    <div class="tab-menu">
+        <button class="tab active">SURAH</button>
+        <button class="tab">JUZ</button>
+        <button class="tab">BOOKMARK</button>
+    </div>
+
+    <div class="surah-list" id="surahList">
+        <div class="surah-item">
+            <div class="surah-info">
+                <div class="surah-number">1</div>
+                <div class="surah-name">
+                    <h2><a href="al-fatihah.html">Al-Fatihah</a></h2>
+                    <p>Mekah | 7 Ayat</p>
+                </div>
+            </div>
+            <div class="surah-action">
+                <img src="play-icon.png" alt="Play">
+            </div>
+        </div>
+
+        <div class="surah-item">
+            <div class="surah-info">
+                <div class="surah-number">2</div>
+                <div class="surah-name">
+                    <h2><a href="al-baqarah.html">Al-Baqarah</a></h2>
+                    <p>Madinah | 286 Ayat</p>
+                </div>
+            </div>
+            <div class="surah-action">
+                <img src="download-icon.png" alt="Download">
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Pindahkan fokus ke input field saat ikon pencarian diklik
+        document.querySelector('.search-icon').addEventListener('click', function() {
+            document.getElementById('searchInput').focus();
+        });
+
+        // JavaScript untuk mencari surat
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let input = this.value.toLowerCase();
+            let surahItems = document.getElementsByClassName('surah-item');
+
+            for (let i = 0; i < surahItems.length; i++) {
+                let surahName = surahItems[i].getElementsByClassName('surah-name')[0].innerText.toLowerCase();
+
+                if (surahName.includes(input)) {
+                    surahItems[i].style.display = '';
+                } else {
+                    surahItems[i].style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
